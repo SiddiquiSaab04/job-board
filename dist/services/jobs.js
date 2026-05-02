@@ -15,7 +15,6 @@ const getAllJobsService = async (req, res) => {
             { description: { $regex: search, $options: "i" } },
             { company: { $regex: search, $options: "i" } },
             { location: { $regex: search, $options: "i" } },
-            { jobType: { $regex: search, $options: "i" } },
             { salary: { $regex: search } },
         ])
             .skip(skip)

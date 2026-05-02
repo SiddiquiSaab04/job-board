@@ -8,12 +8,14 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const index_1 = require("./routes/index");
 const db_1 = __importDefault(require("./config/db"));
+const multer_1 = __importDefault(require("multer"));
 dotenv_1.default.config();
 (0, db_1.default)();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
+app.use(multer_1.default);
 app.use("/api", index_1.router);
 app.get("/", (req, res) => {
     res.send("Hello World!");
