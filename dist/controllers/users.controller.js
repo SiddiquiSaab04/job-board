@@ -45,12 +45,7 @@ const createUser = async (req, res) => {
 exports.createUser = createUser;
 const getAllUsers = async (req, res) => {
     try {
-        const users = await (0, users_service_1.getAllUserService)();
-        return res.status(200).json({
-            success: true,
-            message: "Users fetched successfully",
-            data: users,
-        });
+        const users = await (0, users_service_1.getAllUserService)(req, res);
     }
     catch (error) {
         console.log(error);
