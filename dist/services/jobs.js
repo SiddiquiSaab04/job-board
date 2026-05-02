@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateJobService = exports.createJobService = exports.getAllJobsService = void 0;
+exports.deleteJobService = exports.updateJobService = exports.createJobService = exports.getAllJobsService = void 0;
 const jobs_1 = __importDefault(require("../models/jobs"));
 const paginate_1 = require("../utils/paginate");
 const getAllJobsService = async (req, res) => {
@@ -53,3 +53,11 @@ const updateJobService = async (id, data) => {
     return job;
 };
 exports.updateJobService = updateJobService;
+const deleteJobService = async (id) => {
+    const job = await jobs_1.default.findByIdAndDelete(id);
+    if (!job) {
+        throw new Error("Job not found");
+    }
+    return job;
+};
+exports.deleteJobService = deleteJobService;

@@ -8,3 +8,4 @@ exports.jobRouter = jobRouter;
 jobRouter.get("/", jobs_controller_1.getAllJobs);
 jobRouter.post("/", jobs_controller_1.createJob);
 jobRouter.put("/:id", jobs_controller_1.updateJob);
+jobRouter.delete("/:id", jobs_controller_1.deleteJob);

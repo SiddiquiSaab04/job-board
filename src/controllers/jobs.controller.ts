@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createJobService, getAllJobsService , updateJobService } from "../services/jobs";
+import { createJobService, getAllJobsService , updateJobService , deleteJobService } from "../services/jobs";
 const getAllJobs = async (req: Request, res: Response) => {
   try {
     const result = await getAllJobsService(req, res);
@@ -66,4 +66,21 @@ const updateJob = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllJobs, createJob, updateJob };
+const deleteJob = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const result = await deleteJobService(id as string);
+    return res.status(200).json({
+      success: true,
+      message: "Job deleted successfully",
+    });
+  } catch (error: any) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
+
+export { getAllJobs, createJob, updateJob , deleteJob };

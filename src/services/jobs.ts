@@ -50,3 +50,10 @@ export const updateJobService = async (id: string, data: CreateJobSchema) => {
   return job;
 };
 
+export const deleteJobService = async (id: string) => {
+  const job = await JobModel.findByIdAndDelete(id);
+  if(!job){
+    throw new Error("Job not found");
+  }
+  return job;
+};
