@@ -8,8 +8,17 @@ const jobs_1 = __importDefault(require("../models/jobs"));
 const paginate_1 = require("../utils/paginate");
 const getAllJobsService = async (req, res) => {
     try {
-        const { skip, limit, page } = (0, paginate_1.paginate)(req);
-        const jobs = await jobs_1.default.find().skip(skip).limit(limit);
+        const { skip, limit, page, search } = (0, paginate_1.paginate)(req);
+        const jobs = await jobs_1.default.find({})
+            .or([
+            { title: { $regex: search, $options: "i" } },
+            { description: { $regex: search, $options: "i" } },
+            { company: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
+            { jobType: { $regex: search, $options: "i" } },
+            { salary: { $regex: search } },
+        ])
+            .skip(skip).limit(limit);
         const total = await jobs_1.default.countDocuments();
         return res.status(200).json({
             success: true,

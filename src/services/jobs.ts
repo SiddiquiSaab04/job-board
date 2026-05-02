@@ -4,8 +4,17 @@ import { paginate } from "../utils/paginate";
 
 export const getAllJobsService = async (req: Request, res: Response) => {
     try {
-        const {skip, limit, page} = paginate(req);
-        const jobs = await Job.find().skip(skip).limit(limit);
+        const {skip, limit, page, search} = paginate(req);
+        const jobs = await Job.find({})
+        .or([
+            {title: {$regex: search, $options: "i"}},
+            {description: {$regex: search, $options: "i"}},
+            {company: {$regex: search, $options: "i"}},
+            {location: {$regex: search, $options: "i"}},
+            {jobType: {$regex: search, $options: "i"}},
+            {salary: {$regex: search}},
+        ])
+        .skip(skip).limit(limit);
         const total = await Job.countDocuments();
         return res.status(200).json({
             success: true,
