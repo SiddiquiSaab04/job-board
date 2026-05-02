@@ -2,20 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteJob = exports.updateJob = exports.createJob = exports.getAllJobs = void 0;
 const jobs_service_1 = require("../services/jobs.service");
-const getAllJobs = async (req, res) => {
-    try {
-        const result = await (0, jobs_service_1.getAllJobsService)(req, res);
-        return result;
-    }
-    catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            success: false,
-            message: "Internal server error",
-        });
-    }
-};
-exports.getAllJobs = getAllJobs;
 const createJob = async (req, res) => {
     try {
         const body = req.body;
@@ -44,12 +30,31 @@ const createJob = async (req, res) => {
     }
 };
 exports.createJob = createJob;
+const getAllJobs = async (req, res) => {
+    try {
+        const result = await (0, jobs_service_1.getAllJobsService)(req, res);
+        return result;
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+};
+exports.getAllJobs = getAllJobs;
 const updateJob = async (req, res) => {
     try {
         const body = req.body;
         const { id } = req.params;
         const { title, description, salary, location, company, postedBy } = body;
-        if (!title && !description && !salary && !location && !company && !postedBy) {
+        if (!title &&
+            !description &&
+            !salary &&
+            !location &&
+            !company &&
+            !postedBy) {
             return res.status(400).json({
                 success: false,
                 message: "At least one field is required",

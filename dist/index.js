@@ -14,7 +14,7 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.use(express_1.default.static("uploads"));
+app.use("/uploads", express_1.default.static("uploads"));
 app.use("/api", index_1.router);
 app.get("/", (req, res) => {
     res.send("Hello World!");

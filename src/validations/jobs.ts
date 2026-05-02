@@ -28,6 +28,6 @@ const updateJobSchema = Joi.object({
   postedBy: Joi.string().optional(),
 });
 
-export type CreateJobSchema = typeof jobSchema;
-export type GetJobSchema = typeof getJobSchema;
-export type UpdateJobSchema = typeof updateJobSchema;
+export type CreateJobSchema = Joi.ObjectSchema<typeof jobSchema>;
+export type GetJobSchema = Joi.ObjectSchema<typeof getJobSchema>;
+export type UpdateJobSchema = Joi.ObjectSchema<typeof updateJobSchema>;

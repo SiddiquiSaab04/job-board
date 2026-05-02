@@ -5,5 +5,5 @@ import {userRouter} from "./user";
 const router = Router();
 
 router.use("/jobs", jobRouter);
-router.use("/user", userRouter);
+router.use("/users", userRouter);
 export {router};

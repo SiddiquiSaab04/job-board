@@ -1,17 +1,10 @@
 import { Request, Response } from "express";
-import { createJobService, getAllJobsService , updateJobService , deleteJobService } from "../services/jobs.service";
-const getAllJobs = async (req: Request, res: Response) => {
-  try {
-    const result = await getAllJobsService(req, res);
-    return result;
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
-  }
-};
+import {
+  createJobService,
+  getAllJobsService,
+  updateJobService,
+  deleteJobService,
+} from "../services/jobs.service";
 
 const createJob = async (req: Request, res: Response) => {
   try {
@@ -39,18 +32,38 @@ const createJob = async (req: Request, res: Response) => {
   }
 };
 
+const getAllJobs = async (req: Request, res: Response) => {
+  try {
+    const result = await getAllJobsService(req, res);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
 const updateJob = async (req: Request, res: Response) => {
   try {
     const body = req.body;
-    const { id} = req.params;
+    const { id } = req.params;
     const { title, description, salary, location, company, postedBy } = body;
-    if (!title && !description && !salary && !location && !company && !postedBy) {
+    if (
+      !title &&
+      !description &&
+      !salary &&
+      !location &&
+      !company &&
+      !postedBy
+    ) {
       return res.status(400).json({
         success: false,
         message: "At least one field is required",
       });
     } else {
-      const result = await updateJobService(id as string , body);
+      const result = await updateJobService(id as string, body);
       return res.status(201).json({
         success: true,
         message: "Job updated successfully",
@@ -81,6 +94,6 @@ const deleteJob = async (req: Request, res: Response) => {
       message: error.message,
     });
   }
-}
+};
 
-export { getAllJobs, createJob, updateJob , deleteJob };
+export { getAllJobs, createJob, updateJob, deleteJob };

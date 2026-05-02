@@ -7,4 +7,4 @@ const user_1 = require("./user");
 const router = (0, express_1.Router)();
 exports.router = router;
 router.use("/jobs", jobs_1.jobRouter);
-router.use("/user", user_1.userRouter);
+router.use("/users", user_1.userRouter);
