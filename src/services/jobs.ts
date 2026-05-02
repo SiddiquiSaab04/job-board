@@ -41,3 +41,12 @@ export const createJobService = async (data: CreateJobSchema) => {
   const job = await JobModel.create(data as unknown as Job);
   return job;   
 };
+
+export const updateJobService = async (id: string, data: CreateJobSchema) => {
+  const job = await JobModel.findByIdAndUpdate(id, data, { new: true });
+  if(!job){
+    throw new Error("Job not found");
+  }
+  return job;
+};
+

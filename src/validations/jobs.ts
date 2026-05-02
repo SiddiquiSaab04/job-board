@@ -19,5 +19,15 @@ const getJobSchema = Joi.object({
   postedBy: Joi.string().optional(),
 });
 
+const updateJobSchema = Joi.object({
+  title: Joi.string().optional(),
+  description: Joi.string().optional(),
+  salary: Joi.number().optional(),
+  location: Joi.string().optional(),
+  company: Joi.string().optional(),
+  postedBy: Joi.string().optional(),
+});
+
 export type CreateJobSchema = typeof jobSchema;
 export type GetJobSchema = typeof getJobSchema;
+export type UpdateJobSchema = typeof updateJobSchema;

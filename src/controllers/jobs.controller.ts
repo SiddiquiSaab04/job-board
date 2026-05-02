@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createJobService, getAllJobsService } from "../services/jobs";
+import { createJobService, getAllJobsService , updateJobService } from "../services/jobs";
 const getAllJobs = async (req: Request, res: Response) => {
   try {
     const result = await getAllJobsService(req, res);
@@ -39,4 +39,31 @@ const createJob = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllJobs, createJob };
+const updateJob = async (req: Request, res: Response) => {
+  try {
+    const body = req.body;
+    const { id} = req.params;
+    const { title, description, salary, location, company, postedBy } = body;
+    if (!title && !description && !salary && !location && !company && !postedBy) {
+      return res.status(400).json({
+        success: false,
+        message: "At least one field is required",
+      });
+    } else {
+      const result = await updateJobService(id as string , body);
+      return res.status(201).json({
+        success: true,
+        message: "Job updated successfully",
+        data: result,
+      });
+    }
+  } catch (error: any) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { getAllJobs, createJob, updateJob };

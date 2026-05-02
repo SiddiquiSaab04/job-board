@@ -21,3 +21,11 @@ const getJobSchema = joi_1.default.object({
     company: joi_1.default.string().required(),
     postedBy: joi_1.default.string().optional(),
 });
+const updateJobSchema = joi_1.default.object({
+    title: joi_1.default.string().optional(),
+    description: joi_1.default.string().optional(),
+    salary: joi_1.default.number().optional(),
+    location: joi_1.default.string().optional(),
+    company: joi_1.default.string().optional(),
+    postedBy: joi_1.default.string().optional(),
+});
