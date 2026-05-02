@@ -11,12 +11,12 @@ const jobSchema = new mongoose.Schema({
     required: true,
   },
   salary: {
-    type: Number,
+    type: String,
     required: true,
   },
   location: {
     type: String,
-    enum : [location.REMOTE, location.ON_SITE, location.HYBRID],
+    enum: [location.REMOTE, location.ON_SITE, location.HYBRID],
     required: true,
   },
   company: {
@@ -31,9 +31,9 @@ const jobSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  postedBy:{
+  postedBy: {
     type: String,
-    required:false
+    required: false,
   },
 });
 

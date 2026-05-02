@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllJobsService = void 0;
+exports.createJobService = exports.getAllJobsService = void 0;
 const jobs_1 = __importDefault(require("../models/jobs"));
 const paginate_1 = require("../utils/paginate");
 const getAllJobsService = async (req, res) => {
@@ -18,7 +18,9 @@ const getAllJobsService = async (req, res) => {
             { jobType: { $regex: search, $options: "i" } },
             { salary: { $regex: search } },
         ])
-            .skip(skip).limit(limit).sort({ createdAt: -1 });
+            .skip(skip)
+            .limit(limit)
+            .sort({ createdAt: -1 });
         const total = await jobs_1.default.countDocuments();
         return res.status(200).json({
             success: true,
@@ -38,3 +40,8 @@ const getAllJobsService = async (req, res) => {
     }
 };
 exports.getAllJobsService = getAllJobsService;
+const createJobService = async (data) => {
+    const job = await jobs_1.default.create(data);
+    return job;
+};
+exports.createJobService = createJobService;

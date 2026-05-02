@@ -13,4 +13,11 @@ const jobSchema = joi_1.default.object({
     createdAt: joi_1.default.date().default(Date.now),
     updatedAt: joi_1.default.date().default(Date.now),
 });
-exports.default = jobSchema;
+const getJobSchema = joi_1.default.object({
+    title: joi_1.default.string().required(),
+    description: joi_1.default.string().required(),
+    salary: joi_1.default.number().required(),
+    location: joi_1.default.string().required(),
+    company: joi_1.default.string().required(),
+    postedBy: joi_1.default.string().optional(),
+});

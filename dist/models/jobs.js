@@ -15,7 +15,7 @@ const jobSchema = new mongoose_1.default.Schema({
         required: true,
     },
     salary: {
-        type: Number,
+        type: String,
         required: true,
     },
     location: {
@@ -37,7 +37,7 @@ const jobSchema = new mongoose_1.default.Schema({
     },
     postedBy: {
         type: String,
-        required: false
+        required: false,
     },
 });
 const Jobs = mongoose_1.default.model("Jobs", jobSchema);

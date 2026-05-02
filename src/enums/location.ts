@@ -1,7 +1,7 @@
 const location = {
-    REMOTE : "Remote",
-    ON_SITE : "On-Site",
-    HYBRID : "Hybrid",
-}
+  REMOTE: "remote",
+  ON_SITE: "on-site",
+  HYBRID: "hybrid",
+};
 
 export default location;
