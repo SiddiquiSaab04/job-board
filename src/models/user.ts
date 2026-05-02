@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import role from "../enums/role";
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -38,8 +39,8 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["user", "admin"],
-    default: "user",
+    enum: [role.USER, role.ADMIN],
+    default: role.USER,
   },
 })
 
