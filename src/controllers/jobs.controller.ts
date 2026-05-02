@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createJobService, getAllJobsService , updateJobService , deleteJobService } from "../services/jobs";
+import { createJobService, getAllJobsService , updateJobService , deleteJobService } from "../services/jobs.service";
 const getAllJobs = async (req: Request, res: Response) => {
   try {
     const result = await getAllJobsService(req, res);

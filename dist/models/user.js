@@ -8,7 +8,7 @@ const role_1 = __importDefault(require("../enums/role"));
 const userSchema = new mongoose_1.default.Schema({
     name: {
         type: String,
-        required: true,
+        required: false,
     },
     email: {
         type: String,
@@ -20,7 +20,7 @@ const userSchema = new mongoose_1.default.Schema({
     },
     phoneNumber: {
         type: String,
-        required: true,
+        required: false,
     },
     city: {
         type: String,

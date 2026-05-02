@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteJob = exports.updateJob = exports.createJob = exports.getAllJobs = void 0;
-const jobs_1 = require("../services/jobs");
+const jobs_service_1 = require("../services/jobs.service");
 const getAllJobs = async (req, res) => {
     try {
-        const result = await (0, jobs_1.getAllJobsService)(req, res);
+        const result = await (0, jobs_service_1.getAllJobsService)(req, res);
         return result;
     }
     catch (error) {
@@ -27,7 +27,7 @@ const createJob = async (req, res) => {
             });
         }
         else {
-            const result = await (0, jobs_1.createJobService)(body);
+            const result = await (0, jobs_service_1.createJobService)(body);
             return res.status(201).json({
                 success: true,
                 message: "Job created successfully",
@@ -56,7 +56,7 @@ const updateJob = async (req, res) => {
             });
         }
         else {
-            const result = await (0, jobs_1.updateJobService)(id, body);
+            const result = await (0, jobs_service_1.updateJobService)(id, body);
             return res.status(201).json({
                 success: true,
                 message: "Job updated successfully",
@@ -76,7 +76,7 @@ exports.updateJob = updateJob;
 const deleteJob = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await (0, jobs_1.deleteJobService)(id);
+        const result = await (0, jobs_service_1.deleteJobService)(id);
         return res.status(200).json({
             success: true,
             message: "Job deleted successfully",
